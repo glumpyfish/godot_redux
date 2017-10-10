@@ -1,0 +1,4 @@
+extends Node
+
+const SET_PLAYER_HEALTH = 'SET_PLAYER_HEALTH'
+

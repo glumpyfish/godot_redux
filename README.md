@@ -1,7 +1,7 @@
 # godot_redux
 
-<img src="https://raw.githubusercontent.com/godotengine/godot/master/icon.png" alt="Godot" style="width: 100px;"/>
-<img src="https://raw.githubusercontent.com/reactjs/redux/master/logo/logo.png" alt="Redux" style="width: 100px;"/>
+<img src="https://raw.githubusercontent.com/godotengine/godot/master/icon.png" alt="Godot" height="100" width="100"/>
+<img src="https://raw.githubusercontent.com/reactjs/redux/master/logo/logo.png" alt="Redux" height="100" width="100"/>
 
 Redux for Godot is a tool written in GDScript for handling state management. It is completely inspired by the [Redux javascript package](http://redux.js.org).
 

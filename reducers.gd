@@ -1,12 +1,12 @@
 extends Node
 
 var action_types = preload ('action_types.gd').new()
-var store = preload ('redux.gd').new()
+var store = preload ('store.gd').new()
 
-func update_player(state, action):
+func player(state, action):
 	if action['type'] == action_types.SET_PLAYER_HEALTH:
 		var next_state = store.shallow_copy(state)
-		store.shallow_merge(action['params'], next_state)
+		next_state['health'] = action['health']
 		return next_state
 	return state
 

@@ -1,5 +1,8 @@
 # godot_redux
 
+<img src="https://raw.githubusercontent.com/godotengine/godot/master/icon.png" alt="Godot" style="width: 100px;"/>
+<img src="https://raw.githubusercontent.com/reactjs/redux/master/logo/logo.png" alt="Redux" style="width: 100px;"/>
+
 Redux for Godot is a tool written in GDScript for handling state management. It is completely inspired by the [Redux javascript package](http://redux.js.org).
 
 Working with Godot's scene structure and dynamically typed script language, the challenges of state mutation and organization are similar to those encountered when building a web app in React. Instead of littering all component nodes with game state, which can be unruly and confusing for larger projects, we can consolidate all state into a single store and govern write-access through the use of discrete actions and reducers.

@@ -29,11 +29,30 @@ Actions are dictionary objects sent to the store and are the only source of info
 
 Actions must have a `type` property. Apart from that, any other property related to the action can be included.
 
+```
+func example_action(value1, value2):
+    return {
+        'type': 'EXAMPLE_ACTION_TYPE',
+        'key1': value1,
+        'key2': value2
+    }
+```
+
 ### Reducers
 
 Reducers respond to the actions that are dispatched to the store and are responsible for applying the changes needed to the store.
 
 Reducers are pure functions that take 2 parameters: the last known state and an action. It outputs a new state. It is important that the reducer does not mutate the previous state. It must either return the previous state as is (the default case), or create a new dictionary to house the new state. The calculation performed by the reducer must be predictable and repeatable and cannot depend on anything else that may produce a different output given the same inputs.
+
+```
+func example_reducer(state, action):
+    if action['type'] == 'EXAMPLE_ACTION_TYPE':
+        var next_state = util.shallow_copy(state)
+        next_state['key1'] = action['key1']
+        next_state['key2'] = action['key2']
+        return next_state
+    return state
+```
 
 ### Subscribers
 

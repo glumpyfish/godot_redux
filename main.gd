@@ -15,6 +15,6 @@ func _ready():
 	store.dispatch(actions.player_set_name('Me'))
 	store.dispatch(actions.player_set_health(100))
 
-func _on_store_changed(name, prev_state, state):
+func _on_store_changed(name, state):
 	print (store.get())
 

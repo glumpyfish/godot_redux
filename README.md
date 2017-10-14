@@ -4,11 +4,24 @@
 
 Redux for Godot is a tool written in GDScript for handling state management. It is completely inspired by the [Redux javascript package](http://redux.js.org).
 
-Working with Godot's scene structure and dynamically typed script language, the challenges of state mutation and organization are similar to those encountered when building a web app in React. Instead of littering all component nodes with game state, which can be unruly and confusing for larger projects, we can consolidate all state into a single store and govern write-access through the use of discrete actions and reducers.
+Working with Godot's scene structure and dynamically typed script language, the challenges of state mutation and organization are similar to those encountered when building a web app in React.
+Instead of littering all component nodes with game state, which can be unruly and confusing for larger projects, we can consolidate all state into a single store and govern write-access through the use of discrete actions and reducers.
+
+Using the redux architecture also allows for some interesting features:
+* Saving and loading saved games becomes trivial.
+* Time travel (i.e. undo/redo actions).
 
 Knowledge about the javascript version of Redux is recommended. Refer to the [Redux javascript docs](http://redux.js.org) for a more detailed reference.
 
 ## Usage
+
+The following files must be added to "Scene > Project Settings > AutoLoad":
+* `store.gd`
+* `action_types.gd`
+* `actions.gd`
+* `reducers.gd`
+
+## Basics
 
 ### Actions
 
@@ -16,15 +29,15 @@ Actions are dictionary objects sent to the store and are the only source of info
 
 Actions must have a `type` property. Apart from that, any other property related to the action can be included.
 
-### Action creators
-
-Action creators are functions that create and dispatch actions. They are called throughout your game code and serve as interfaces to your store.
-
 ### Reducers
 
 Reducers respond to the actions that are dispatched to the store and are responsible for applying the changes needed to the store.
 
 Reducers are pure functions that take 2 parameters: the last known state and an action. It outputs a new state. It is important that the reducer does not mutate the previous state. It must either return the previous state as is (the default case), or create a new dictionary to house the new state. The calculation performed by the reducer must be predictable and repeatable and cannot depend on anything else that may produce a different output given the same inputs.
+
+### Subscribers
+
+Callback functions can be specified at the time of store creation or individually at a later time. They are called whenever the state is changed. Due to the static nature of Godot's signal definitions, subscribers will receive all state changes throughout the app. To help with this, the reducer name is passed to the callback so it can choose to respond to the appropriate changes.
 
 ### Store
 

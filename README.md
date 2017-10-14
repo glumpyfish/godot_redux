@@ -66,3 +66,62 @@ The store is the object that glues everything together:
 * Allows state to be updated via `dispatch(action)`
 * Registers handlers via `subscribe(target, name)`
 * Unregisters handlers via `unsubscribe(target, name)`
+
+## API
+
+### store.get()
+
+No parameters.
+Returns: Dictionary containing entire state.
+
+### store.create(reducers, [callbacks])
+
+Parameter | Required | Description | Example
+--- | --- | --- | ---
+`reducers` | Yes | An array of dictionaries, each with `name` and `instance` keys. | `[{ 'name': 'function_name', 'instance': obj }]`
+`callbacks` | No | An array of dictionaries, each with `name` and `instance` keys. | `[{ 'name': 'function_name', 'instance': obj }]`
+
+Returns: Nothing.
+
+### store.dispatch(action)
+
+Parameter | Required | Description | Example
+--- | --- | --- | ---
+`action` | Yes | A dictionary containing `type` key. | `{ 'type': 'ACTION_TYPE' }`
+
+Returns: Nothing
+
+### store.subscribe(target, method)
+
+Parameter | Required | Description | Example
+--- | --- | --- | ---
+`target` | Yes | Object containing the callback function. | `self`
+`method` | Yes | String of the callback function name. | `'callback_function'`
+
+Returns: Nothing
+
+### store.unsubscribe(target, method)
+
+Parameter | Required | Description | Example
+--- | --- | --- | ---
+`target` | Yes | Object containing the callback function. | `self`
+`method` | Yes | String of the callback function name. | `'callback_function'`
+
+Returns: Nothing
+
+### store.shallow_copy(dict)
+
+Parameter | Required | Description | Example
+--- | --- | --- | ---
+`dict` | Yes | Dictionary to be cloned. | `{ 'key1' : 'value1' }`
+
+Returns: A copy of the dictionary, however only the first level of keys are cloned.
+
+### store.shallow_merge(src_dict, dest_dict)
+
+Parameter | Required | Description | Example
+--- | --- | --- | ---
+`src_dict` | Yes | Dictionary to merge. | `{ 'key' : 'new_value' }`
+`dest_dict` | Yes | Dictionary affected by merge. | `{ 'key' : 'old_value' }`
+
+Returns: Nothing. `dest_dict` is mutated and now has merge changes. Only the first level of keys is copied. Later levels are referenced.

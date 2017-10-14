@@ -72,6 +72,7 @@ The store is the object that glues everything together:
 ### store.get()
 
 No parameters.
+
 Returns: Dictionary containing entire state.
 
 ### store.create(reducers, [callbacks])

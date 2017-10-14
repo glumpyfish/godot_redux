@@ -1,19 +1,20 @@
 extends Node
 
-var actions = preload ('actions.gd').new()
-var reducers = preload ('reducers.gd').new()
-onready var store = preload ('store.gd').new()
+onready var actions = get_node('/root/actions')
+onready var reducers = get_node('/root/reducers')
+onready var store = get_node('/root/store')
 
 func _ready():
-	store.create(
-		[{'name': 'player', 'instance': reducers}],
-		[{'name': '_on_store_changed', 'instance': self}]
-	)
-	set_player_health(100)
+	store.create([
+		{'name': 'game', 'instance': reducers},
+		{'name': 'player', 'instance': reducers}
+	], [
+		{'name': '_on_store_changed', 'instance': self}
+	])
+	store.dispatch(actions.game_set_start_time(OS.get_unix_time()))
+	store.dispatch(actions.player_set_name('Me'))
+	store.dispatch(actions.player_set_health(100))
 
 func _on_store_changed(name, prev_state, state):
 	print (store.get())
-
-func set_player_health(value):
-	store.dispatch(actions.set_player_health(value))
 

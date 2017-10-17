@@ -26,9 +26,12 @@ func dispatch(action):
 	for name in _reducers.keys():
 		var state = _state[name]
 		var next_state = _reducers[name].call_func(state, action)
-		if state != next_state:
-			shallow_merge(next_state, state)
-			emit_signal('state_changed', name, state)
+		if next_state == null:
+			_state.erase(name)
+			emit_signal('state_changed', name, null)
+		elif state != next_state:
+			_state[name] = next_state
+			emit_signal('state_changed', name, next_state)
 
 func get():
 	return _state

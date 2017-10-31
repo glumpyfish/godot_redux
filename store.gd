@@ -12,6 +12,12 @@ func create(reducers, callbacks = null):
 			_state[name] = {}
 		if not _reducers.has(name):
 			_reducers[name] = funcref(reducer['instance'], name)
+			var initial_state = _reducers[name].call_func(
+				_state[name],
+				{'type': null}
+			)
+			_state[name] = initial_state
+
 	if callbacks != null:
 		for callback in callbacks:
 			subscribe(callback['instance'], callback['name'])

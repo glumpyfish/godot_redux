@@ -15,11 +15,13 @@ Knowledge about the javascript version of Redux is recommended. Refer to the [Re
 
 ## Usage
 
-The following files must be added to "Scene > Project Settings > AutoLoad":
+The following files can be added to "Scene > Project Settings > AutoLoad" so that they are loaded first:
 * `store.gd`
 * `action_types.gd`
 * `actions.gd`
 * `reducers.gd`
+
+The `main.gd` script should then be attached to a root node, or a node that loads before any of the actions are used.
 
 ## Basics
 
